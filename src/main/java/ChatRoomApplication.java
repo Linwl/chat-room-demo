@@ -10,6 +10,6 @@ public class ChatRoomApplication {
 
     public static void main(String[] args)
     {
-        new ChatServer(8888).start();
+        new ChatServer(8099).start();
     }
 }

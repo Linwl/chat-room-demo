@@ -36,9 +36,11 @@ public class ChatServer {
         try
         {
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(new ChatServerInitialize()).option(ChannelOption.SO_BACKLOG,1024).option(ChannelOption.SO_KEEPALIVE,true);
+            bootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(new ChatServerInitialize()).option(ChannelOption.SO_BACKLOG,1024);
             //绑定监听端口，调用sync同步阻塞方法等待绑定操作完成，完成后返回ChannelFuture类似于JDK中Future
             ChannelFuture future = bootstrap.bind(port).sync();
+            System.out.println("8099:binded...");
+            future.channel().closeFuture().sync();
         }
         catch (InterruptedException e)
         {
